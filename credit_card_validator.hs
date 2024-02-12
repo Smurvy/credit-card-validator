@@ -1,14 +1,13 @@
 double_num x = x * 2
 
 -- filter out wrong answers in functional programming
-find_index x xs = [xel | xel <- [0..(length xs)  - 1], x == xs !! xel] !! 0
-
 to_arr x = if x > 10 then (to_arr (div x 10)) ++ ([mod x 10]) else [x]
 
+
+
+
 double_every_other :: [Int] -> [Int]
-double_every_other xs = if (odd (length xs)) then [if odd (find_index x xs) then x*2 else x | x <- xs] else [if even (find_index x xs) then x * 2 else x | x <- xs] 
-
-
+double_every_other xs = reverse [if (mod (snd x) 2) == 0 then fst x * 2 else fst x | x <- reverse (zip xs [0..])]
 
 sum_digits :: Int -> Int
 sum_digits x = if x > 10 then ((mod x 10) + (sum_digits (div x 10))) else x
